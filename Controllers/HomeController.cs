@@ -16,8 +16,11 @@ namespace WebApplicatn.Controllers
         {
             _logger = logger;
         }
-
-         public IActionResult Index()
+        /// <summary>
+        /// gets all records 
+        /// </summary>
+        /// <returns> List<User> </returns>
+        public IActionResult Index()
         {
             
            try
@@ -108,6 +111,11 @@ namespace WebApplicatn.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// Edits a single record
+        /// </summary>
+        /// <param name="_user"></param>
+        /// <returns>Edition Confirmation</returns>
         [HttpPost]
         public IActionResult Edit(User _user)
         {
@@ -118,7 +126,7 @@ namespace WebApplicatn.Controllers
                 XmlDocument doc = new XmlDocument();
                 doc.Load("users_2.xml");
 
-                //Find And Delete Record
+                //Find And Edit Record
                 foreach (XmlNode xNode in doc.SelectNodes("db/user"))
                 {
                     if (xNode.SelectSingleNode("id").InnerText == _user.Id)
@@ -140,6 +148,11 @@ namespace WebApplicatn.Controllers
                 return View(ex.Message);
             }
         }
+        /// <summary>
+        /// Delete a single user
+        /// </summary>
+        /// <param name="_user"></param>
+        /// <returns>Confirmation of action</returns>
         public IActionResult Delete(User _user)
         {
             try

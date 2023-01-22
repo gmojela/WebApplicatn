@@ -9,11 +9,17 @@ namespace WebApplicatn.Models
         [System.ComponentModel.DataAnnotations.Key]
         public string Id { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Surname")]
         public string Surname { get; set; }
 
-        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Cell Number")]
+        [Required(ErrorMessage = "Phone Number Required!")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[ . ]?([0-9]{3})[ . ]?([0-9]{4})$",
+                   ErrorMessage = "Format: 000 000 0000")]
         public string CellNumber { get; set; }
     }
 }

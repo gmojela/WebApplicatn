@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<db>
+  <user name="user">
+    <id>89d3123c-86d3-4132-b138-24b0d94a27f6</id>
+    <name>Gerald</name>
+    <surname>Mojela</surname>
+    <cellnumber>123456789</cellnumber>
+  </user>
+  <user name="user">
+    <id>f0b9b590-6a4b-4f69-9dba-0b5d09480c39</id>
+    <name>Seipati</name>
+    <surname>Moema</surname>
+    <cellnumber>234567890</cellnumber>
+  </user>
+</db>

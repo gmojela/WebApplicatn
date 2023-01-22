@@ -1,21 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Linq.Expressions;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.XPath;
 using WebApplicatn.Models;
-using static System.Reflection.Metadata.BlobBuilder;
-using System.Linq;
+
 
 namespace WebApplicatn.Controllers
 {
     public class HomeController : Controller
     {
-   //     XDocument doc = XDocument.Load("C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
-        //XElement xelement = XElement.Load("C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
-
-
+ 
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -23,14 +17,12 @@ namespace WebApplicatn.Controllers
             _logger = logger;
         }
 
-   
-        
          public IActionResult Index()
         {
             
            try
             {
-                XElement xelement = XElement.Load("C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+                XElement xelement = XElement.Load("users_2.xml");
                 IEnumerable<XElement> books = xelement.Elements();
            
                     List<User> _users = new List<User>();
@@ -81,7 +73,7 @@ namespace WebApplicatn.Controllers
         {
             try
             {
-                XDocument doc = XDocument.Load("C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+                XDocument doc = XDocument.Load("users_2.xml");
                 // Create tags 
 
                 XElement xuser = new XElement("user");
@@ -101,7 +93,7 @@ namespace WebApplicatn.Controllers
                 xuser.Add(xcell);
 
                 //save document
-                doc.Save(@"C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+                doc.Save(@"users_2.xml");
                 ViewBag.Message = "User Added";
         
                 return View();
@@ -124,7 +116,7 @@ namespace WebApplicatn.Controllers
 
                 // Load document
                 XmlDocument doc = new XmlDocument();
-                doc.Load("C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+                doc.Load("users_2.xml");
 
                 //Find And Delete Record
                 foreach (XmlNode xNode in doc.SelectNodes("db/user"))
@@ -138,7 +130,7 @@ namespace WebApplicatn.Controllers
                     }
                 }
 
-                doc.Save(@"C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+                doc.Save(@"users_2.xml");
 
                 ViewBag.Message = "Edited";
                 return View();
@@ -155,14 +147,14 @@ namespace WebApplicatn.Controllers
 
                 // Load document
                 XmlDocument doc = new XmlDocument();
-                doc.Load("C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+                doc.Load("users_2.xml");
 
                 //Find And Delete Record
                 foreach(XmlNode xNode in doc.SelectNodes("db/user"))
                     if(xNode.SelectSingleNode("id").InnerText == _user.Id) xNode.ParentNode.RemoveChild(xNode);
                             
             
-            doc.Save(@"C:\\Users\\Gary.Mojela\\Documents\\code\\personal\\users_2.xml");
+            doc.Save(@"users_2.xml");
             
             ViewBag.Message = "Deleted";
             return View();

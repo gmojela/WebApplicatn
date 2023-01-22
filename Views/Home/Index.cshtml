@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplicatn.Models.User>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">C4</h1>
+    <h3>Webb App</h3>
+    <div>
+        @Html.ActionLink("Create User", "Create")
+    </div>
+    <p></p>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>First Name </th>
+                <th>Last Name </th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                   <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td> 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                   <td>
+                        @Html.ActionLink("Edit Details", "Edit", new {id = item.Id}) |
+                        @Html.ActionLink("Delete Record", "Delete", new {id = item.Id})
+                   </td>
+                </tr>
+                       
+            }
+        </tbody>
+       
+
+    </table>
+</div>
